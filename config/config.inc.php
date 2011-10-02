@@ -10,6 +10,8 @@ $DBMS = 'MySQL';
 #$DBMS = 'PGSQL';
 
 # Database variables
+# WARNING: The database specified under db_database WILL BE ENTIRELY DELETED during setup. 
+# Please use a database dedicated to DVWA.
 
 $_DVWA = array();
 $_DVWA[ 'db_server' ] = 'localhost';
