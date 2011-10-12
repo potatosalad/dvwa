@@ -22,4 +22,14 @@ $_DVWA[ 'db_password' ] = 'p@ssw0rd';
 # Only needed for PGSQL
 $_DVWA[ 'db_port' ] = '5432'; 
 
+# ReCAPTCHA Settings
+# Get your keys at https://www.google.com/recaptcha/admin/create
+$_DVWA['recaptcha_public_key'] = "";
+$_DVWA['recaptcha_private_key'] = "";
+
+# Default Security Level
+# The default is high, you may wish to set this to either low or medium.
+# If you specify an invalid level, DVWA will default to high.
+$_DVWA['default_security_level'] = "high";
+
 ?>

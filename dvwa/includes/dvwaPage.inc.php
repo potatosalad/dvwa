@@ -23,25 +23,29 @@ if(!isset($html)){
 
 }
 
+// Valid security levels
+$security_levels = array('low', 'medium', 'high');
 
-// Set security cookie to high if no cookie exists
-if (!isset($_COOKIE['security'])){
-
-	setcookie( 'security', 'high' );
-
+if (!isset($_COOKIE['security']) || !in_array($_COOKIE['security'], $security_levels))
+{
+    // Set security cookie to high if no cookie exists
+    if (in_array($_DVWA['default_security_level'], $security_levels))
+    {
+        setcookie( 'security', $_DVWA['default_security_level'] );
+    } else setcookie('security', 'high');
 }
 
 // DVWA version
 function dvwaVersionGet() {
 
-	return '1.0.7';
+	return '1.8';
 
 }
 
 // DVWA release date
 function dvwaReleaseDateGet() {
 
-	return '08/09/10';
+	return '11/01/2011';
 
 }
 
@@ -167,7 +171,7 @@ function &dvwaPageNewGrab() {
 
 function dvwaSecurityLevelGet() {
 
-	return isset( $_COOKIE[ 'security' ] ) ? $_COOKIE[ 'security' ] : 'high';
+	return isset( $_COOKIE[ 'security' ] ) ? $_COOKIE[ 'security' ] : 'low';
 
 }
 
@@ -238,6 +242,7 @@ function dvwaHtmlEcho( $pPage ) {
 	$menuBlocks['vulnerabilities'][] = array( 'id' => 'brute', 'name' => 'Brute Force', 'url' => 'vulnerabilities/brute/.' );
 	$menuBlocks['vulnerabilities'][] = array( 'id' => 'exec', 'name' => 'Command Execution', 'url' => 'vulnerabilities/exec/.' );
 	$menuBlocks['vulnerabilities'][] = array( 'id' => 'csrf', 'name' => 'CSRF', 'url' => 'vulnerabilities/csrf/.' );
+	$menuBlocks['vulnerabilities'][] = array( 'id' => 'captcha', 'name' => 'Insecure CAPTCHA', 'url' => 'vulnerabilities/captcha/.' );
 	$menuBlocks['vulnerabilities'][] = array( 'id' => 'fi', 'name' => 'File Inclusion', 'url' => 'vulnerabilities/fi/.?page=include.php' );
 	$menuBlocks['vulnerabilities'][] = array( 'id' => 'sqli', 'name' => 'SQL Injection', 'url' => 'vulnerabilities/sqli/.' );
 	$menuBlocks['vulnerabilities'][] = array( 'id' => 'sqli_blind', 'name' => 'SQL Injection (Blind)', 'url' => 'vulnerabilities/sqli_blind/.' );
@@ -287,8 +292,10 @@ function dvwaHtmlEcho( $pPage ) {
 			break;
 
 		case 'high':
-		default:
 			$securityLevelHtml = 'high';
+			break;
+		default:
+			$securityLevelHtml = 'low';
 			break;
 	}
 	// -- END
