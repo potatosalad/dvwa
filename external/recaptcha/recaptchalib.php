@@ -106,7 +106,7 @@ function _recaptcha_http_post($host, $path, $data, $port = 80) {
 function recaptcha_get_html ($pubkey, $error = null, $use_ssl = false)
 {
 	if ($pubkey == null || $pubkey == '') {
-		die ("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>");
+		die ("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create' target='_blank'>https://www.google.com/recaptcha/admin/create</a>");
 	}
 	
 	if ($use_ssl) {
@@ -152,7 +152,7 @@ class ReCaptchaResponse {
 function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $extra_params = array())
 {
 	if ($privkey == null || $privkey == '') {
-		die ("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>");
+		die ("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create' target='_blank'>https://www.google.com/recaptcha/admin/create</a>");
 	}
 
 	if ($remoteip == null || $remoteip == '') {
@@ -230,7 +230,7 @@ function _recaptcha_mailhide_urlbase64 ($x) {
 function recaptcha_mailhide_url($pubkey, $privkey, $email) {
 	if ($pubkey == '' || $pubkey == null || $privkey == "" || $privkey == null) {
 		die ("To use reCAPTCHA Mailhide, you have to sign up for a public and private key, " .
-		     "you can do so at <a href='http://www.google.com/recaptcha/mailhide/apikey'>http://www.google.com/recaptcha/mailhide/apikey</a>");
+		     "you can do so at <a href='http://www.google.com/recaptcha/mailhide/apikey' target='_blank'>http://www.google.com/recaptcha/mailhide/apikey</a>");
 	}
 	
 

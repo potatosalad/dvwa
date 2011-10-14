@@ -31,13 +31,15 @@ switch( $_COOKIE[ 'security' ] ) {
 		break;
 }
 
+
+$hide_form = true;
 require_once DVWA_WEB_PAGE_TO_ROOT."vulnerabilities/captcha/source/{$vulnerabilityFile}";
 
 $page[ 'help_button' ] = 'captcha';
 $page[ 'source_button' ] = 'captcha';
 
 $page[ 'body' ] .= "
-<div class=\"body_padded\">
+	<div class=\"body_padded\">
 	<h1>Vulnerability: Insecure CAPTCHA</h1>
 
 	<div class=\"vulnerable_code_area\">
@@ -45,8 +47,8 @@ $page[ 'body' ] .= "
   	<h3>Change your password:</h3>
     	<br>
     	<form action=\"#\" method=\"POST\"";
-if ($hide_form) $page[ 'body' ] .= "style=\"display:none;\"";
 
+if ($hide_form) $page[ 'body' ] .= "style=\"display:none;\"";
 
 $page[ 'body' ] .= ">
 		<input type=\"hidden\" name=\"step\" value=\"1\" />";

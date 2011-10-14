@@ -60,4 +60,5 @@ if( isset( $_POST['Change'] ) && ( $_POST['step'] == '2' ) )
                $html .= "<pre> Passwords did not match. </pre>";
         }
 }
+
 ?>
