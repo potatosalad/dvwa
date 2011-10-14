@@ -38,13 +38,21 @@ require_once DVWA_WEB_PAGE_TO_ROOT."vulnerabilities/captcha/source/{$vulnerabili
 $page[ 'help_button' ] = 'captcha';
 $page[ 'source_button' ] = 'captcha';
 
+# deal with an empty captcha key
+if ($_DVWA['recaptcha_public_key'] != "") {
+	 $heading = "<h3>Change your password:</h3>";
+} else {
+	$heading = "reCAPTCHA API key NULL in config file. Please register for a key from reCAPTCHA. ".dvwaExternalLinkUrlGet('https://www.google.com/recaptcha/admin/create');
+}
+
 $page[ 'body' ] .= "
 	<div class=\"body_padded\">
 	<h1>Vulnerability: Insecure CAPTCHA</h1>
 
 	<div class=\"vulnerable_code_area\">
 
-  	<h3>Change your password:</h3>
+  	" . $heading  . "
+
     	<br>
     	<form action=\"#\" method=\"POST\"";
 
